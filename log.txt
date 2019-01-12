@@ -1,0 +1,27 @@
+Line 1: 
+Parsing: main.Parse
+Expect Token (Multiple ): [VARIABLE EOF] 
+	Scanning: main.Scan
+	Expect (Optional Multiple Skip ) Rune: [WS TAB] Range: [] 
+	Expect () Rune: [- + * / ( ) NL : ' EOF] Range: [0-9 A-Z a-z] Found: aPos:1
+		Scanning: main.variable
+		Expect (Optional Multiple ) Rune: [_] Range: [A-Z a-z] 
+		Matched: VARIABLE - a
+		Returning: main.variable
+	Returning: main.Scan
+Found: VARIABLE
+	Parsing: main.assignmentOrCall
+	Expect Token (): [ASSIGN OPEN_PAREN] 
+		Scanning: main.Scan
+		Expect (Optional Multiple Skip ) Rune: [WS TAB] Range: [] Found: WSPos:2
+		Expect () Rune: [- + * / ( ) NL : ' EOF] Range: [0-9 A-Z a-z] 
+***Found [=], expected any of [- + * / ( ) NL : ' EOF 0-9 A-Z a-z]
+Line 1:
+		Returning: main.Scan
+***Found [UNKNOWN], expected any of [ASSIGN OPEN_PAREN]
+	Expect Token (Optional ): [COMMENT] 
+	Expect Token (Skip ): [NL EOF] 
+***Found [UNKNOWN], expected any of [NL EOF]
+	Returning: main.assignmentOrCall
+***Found [UNKNOWN], expected any of [VARIABLE EOF]
+Returning: main.Parse
